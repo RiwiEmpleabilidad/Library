@@ -1,8 +1,15 @@
+using EntityFrameworkCoreJwtTokenAuth.Interfaces;
+using EntityFrameworkCoreJwtTokenAuth.Services;
+using Library.App.Interfaces;
 using Library.App.Interfaces.Users;
 using Library.App.Services;
 using Library.Data;
 using Library.Utils;
+using Library.App.Interfaces.Users;
+using Library.App.Services;
+using Library.App.Services;
 using Microsoft.EntityFrameworkCore;
+using Library.App.Services.Email;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +25,7 @@ builder.Services.AddDbContext<BaseContext>(options =>
         Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.20-mysql")
     )
 );
-
+builder.Services.AddScoped<IMailerSendService, MailerSendService>();
 builder.Services.AddScoped<IUsersServices, UsersService>();
 builder.Services.AddScoped<Bcrypt>();
 
