@@ -18,7 +18,7 @@ namespace Library.Controllers.Books
         
         [HttpPost]
         [Route("api/books")]
-        public IActionResult CreateBook(int Id,Book book){
+        public IActionResult CreateBook([FromBody]Book book){
             _context.AddBook(book);
             return Ok();
         }
