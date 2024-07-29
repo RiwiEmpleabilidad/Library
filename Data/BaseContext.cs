@@ -18,5 +18,5 @@ namespace Library.Data
         public DbSet<Gender> genders { get; set; }
         public DbSet<History> Histories { get; set; }
         public DbSet<Loan> loans { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> users { get; set; }
 }}
