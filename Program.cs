@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 using Library.App.Interfaces.Books;
 using Library.App.Interfaces.Users;
 using Library.App.Services;
 using Library.App.Services.Books;
+=======
+using Library.App.Interfaces.Jwt;
+using Library.App.Interfaces.Users;
+using Library.App.Services;
+using Library.App.Services.Jwt;
+>>>>>>> 3bb3a63c33c3bb4040a9c9d56f1e5bb0a4eff87a
 using Library.Data;
 using Library.Utils;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +32,7 @@ builder.Services.AddScoped<IBookService, BooksServices>();
 
 builder.Services.AddScoped<IUsersServices, UsersService>();
 builder.Services.AddScoped<Bcrypt>();
+builder.Services.AddScoped<IJwtService, JwtService>();
 
 var app = builder.Build();
 
