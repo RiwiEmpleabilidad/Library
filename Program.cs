@@ -1,5 +1,7 @@
+using Library.App.Interfaces.Loans;
 using Library.App.Interfaces.Users;
 using Library.App.Services;
+using Library.App.Services.Loans;
 using Library.Data;
 using Library.Utils;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +22,8 @@ builder.Services.AddDbContext<BaseContext>(options =>
 );
 
 builder.Services.AddScoped<IUsersServices, UsersService>();
+builder.Services.AddScoped<ILoanServices, LoanServices>();
+
 builder.Services.AddScoped<Bcrypt>();
 
 var app = builder.Build();

@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Library.Models
 {
-    public class Loan
-    {
+  public class Loan
+  {
     [Key]
     public int Id { get; set; }
     public int UserId { get; set; }
-      [Required]
+    [Required]
     public User User { get; set; }
-      [Required]
+    [Required]
     public int BookId { get; set; }
-      [Required]
+    [Required]
     public Book Book { get; set; }
 
     [Required]
@@ -28,6 +28,6 @@ namespace Library.Models
     [Required]
     public string Status { get; set; }
     public DateTime? ReturnDate { get; set; }
-        
-    }
+
+  }
 }
