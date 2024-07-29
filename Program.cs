@@ -1,8 +1,17 @@
+<<<<<<< HEAD
+using Library.App.Interfaces.Books;
+using Library.App.Interfaces.Users;
+using Library.App.Services;
+using Library.App.Services.Books;
+=======
+using Library.App.Interfaces.Jwt;
 using EntityFrameworkCoreJwtTokenAuth.Interfaces;
 using EntityFrameworkCoreJwtTokenAuth.Services;
 using Library.App.Interfaces;
 using Library.App.Interfaces.Users;
 using Library.App.Services;
+using Library.App.Services.Jwt;
+>>>>>>> 3bb3a63c33c3bb4040a9c9d56f1e5bb0a4eff87a
 using Library.Data;
 using Library.Utils;
 using Library.App.Interfaces.Users;
@@ -25,9 +34,12 @@ builder.Services.AddDbContext<BaseContext>(options =>
         Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.20-mysql")
     )
 );
+
+builder.Services.AddScoped<IBookService, BooksServices>();
 builder.Services.AddScoped<IMailerSendService, MailerSendService>();
 builder.Services.AddScoped<IUsersServices, UsersService>();
 builder.Services.AddScoped<Bcrypt>();
+builder.Services.AddScoped<IJwtService, JwtService>();
 
 var app = builder.Build();
 
