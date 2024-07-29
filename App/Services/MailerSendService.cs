@@ -1,20 +1,25 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Library.App.Interfaces;
+using Microsoft.Extensions.Configuration;
 
 namespace Library.App.Services.Email
 {
-    public class MailerSendService
+    public class MailerSendService : IMailerSendService
     {
-   
         private readonly string _apiToken;
         private readonly HttpClient _httpClient;
 
         public MailerSendService(IConfiguration configuration)
         {
             _apiToken = configuration["MailerSend:ApiToken"];
+            if (string.IsNullOrEmpty(_apiToken))
+            {
+                throw new ArgumentNullException("MailerSend API token is missing");
+            }
             _httpClient = new HttpClient();
             _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_apiToken}");
             _httpClient.BaseAddress = new Uri("https://api.mailersend.com/v1/");
@@ -38,9 +43,9 @@ namespace Library.App.Services.Email
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception($"Error sending email: {response.ReasonPhrase}");
+                var responseContent = await response.Content.ReadAsStringAsync();
+                throw new Exception($"Error sending email: {response.StatusCode}, {response.ReasonPhrase}, {responseContent}");
             }
         }
     }
-    
 }

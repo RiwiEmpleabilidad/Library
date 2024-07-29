@@ -20,16 +20,10 @@ namespace Library.Controllers.Users
         }
 
         [HttpPost]
-        public IActionResult Register(User user)
+         public async Task<IActionResult> Register(User user)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            //Create
-            _userService.Add(user);
-            return Ok(user);
+            await _userService.AddAsync(user);
+            return Ok("Usuario registrado y correo de confirmación enviado.");
         }
     }
 }
