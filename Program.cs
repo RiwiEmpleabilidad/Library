@@ -1,5 +1,7 @@
+using Library.App.Interfaces.Jwt;
 using Library.App.Interfaces.Users;
 using Library.App.Services;
+using Library.App.Services.Jwt;
 using Library.Data;
 using Library.Utils;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +23,7 @@ builder.Services.AddDbContext<BaseContext>(options =>
 
 builder.Services.AddScoped<IUsersServices, UsersService>();
 builder.Services.AddScoped<Bcrypt>();
+builder.Services.AddScoped<IJwtService, JwtService>();
 
 var app = builder.Build();
 
