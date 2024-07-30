@@ -1,17 +1,12 @@
-<<<<<<< HEAD
 using Library.App.Interfaces.Books;
-using Library.App.Interfaces.Users;
-using Library.App.Services;
-using Library.App.Services.Books;
-=======
 using Library.App.Interfaces.Jwt;
 using EntityFrameworkCoreJwtTokenAuth.Interfaces;
 using EntityFrameworkCoreJwtTokenAuth.Services;
 using Library.App.Interfaces;
 using Library.App.Interfaces.Users;
 using Library.App.Services;
+using Library.App.Services.Books;
 using Library.App.Services.Jwt;
->>>>>>> 3bb3a63c33c3bb4040a9c9d56f1e5bb0a4eff87a
 using Library.Data;
 using Library.Utils;
 using Library.App.Interfaces.Users;

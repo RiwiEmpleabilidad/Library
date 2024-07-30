@@ -21,12 +21,12 @@ namespace Library.App.Services.Books
 
         public object employees => throw new NotImplementedException();
 
-        public void AddBook(Book book)
+        public void AddBook(Book book )
         {
-            // var admin = _context.employees.Find(Id);
-            // if (admin != null){
+           /*   var admin = _context.employees.Find(Id);
+             if (admin != null){
             
-            // }
+            } */
             _context.books.Add(book);
             _context.SaveChanges();
         }

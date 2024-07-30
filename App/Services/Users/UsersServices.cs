@@ -38,7 +38,7 @@ namespace Library.App.Services
             }
 
             // Enviar correo de confirmación
-            var from = "MS_zrwFkg@trial-ynrw7gynq8r42k8e.mlsender.net"; // Correo electrónico del remitente
+            var from = "MS_MlGdXH@trial-v69oxl59dkxg785k.mlsender.net"; // Correo electrónico del remitente
             var fromName = "Library"; // Nombre del remitente
             var to = new List<string> { savedUser.Email }; // Correo electrónico del usuario
             var toNames = new List<string> { savedUser.Name }; // Nombre del usuario
