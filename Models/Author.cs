@@ -14,6 +14,6 @@ namespace Library.Models
     
     public string name { get; set; }
 
-    public ICollection<Book> Books { get; set; }
+    // public ICollection<Book> Books { get; set; }
     }
 }

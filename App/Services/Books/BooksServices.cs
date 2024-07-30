@@ -12,82 +12,81 @@ namespace Library.App.Services.Books
 {
     public class BooksServices : IBookService
     {
-
-
         private readonly BaseContext _context;
-        public BooksServices(BaseContext context){
+        public BooksServices(BaseContext context)
+        {
             _context = context;
         }
 
         public object employess => throw new NotImplementedException();
-    public void AddBook(int Id, Book book)
-    {
-    try
-    {
-        var admin = _context.employees.Find(Id);
-        if (admin != null)
+        public void AddBook(int Id, Book book)
         {
-            _context.books.Add(book);
-            _context.SaveChanges();
+            try
+            {
+                var admin = _context.employees.Find(Id);
+                if (admin != null)
+                {
+                    book.Status = "active";
+                    _context.books.Add(book);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    // Si el admin no se encuentra, lanzar una excepción
+                    throw new Exception("Admin with the provided ID does not exist.");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores y registro de la excepción
+                Console.WriteLine($"An error occurred while adding the book: {ex.Message}");
+                throw; // Lanzar la excepción para que sea manejada por el controlador
+            }
         }
-        else
-        {
-            // Si el admin no se encuentra, lanzar una excepción
-            throw new Exception("Admin with the provided ID does not exist.");
-        }
-    }
-    catch (Exception ex)
-    {
-        // Manejo de errores y registro de la excepción
-        Console.WriteLine($"An error occurred while adding the book: {ex.Message}");
-        throw; // Lanzar la excepción para que sea manejada por el controlador
-    }
-    }
 
         public void DeleteBook(int IdEmployee, int IdBook)
         {
-            
-                    try
+            try
+            {
+                var admin = _context.employees.Find(IdEmployee);
+                if (admin != null)
+                {
+                    var book = _context.books.Find(IdBook);
+                    if (book != null)
                     {
-                        var admin = _context.employees.Find(IdEmployee);
-                            if (admin != null){
-                                var book = _context.books.Find(IdBook);
-                                if (book != null){
-                                    book.Status = "inactive";
-                                    _context.SaveChanges();
-                                }
-                            }
-                        else
-                        {
-                            // Si el admin no se encuentra, lanzar una excepción
-                            throw new Exception("Admin with the provided ID does not exist.");
-                        }
+                        book.Status = "inactive";
+                        _context.SaveChanges();
                     }
-                    catch (Exception ex)
-                    {
-                        // Manejo de errores y registro de la excepción
-                        Console.WriteLine($"An error occurred while adding the book: {ex.Message}");
-                        throw; // Lanzar la excepción para que sea manejada por el controlador
-                    }
-                            
-                            
+                }
+                else
+                {
+                    // Si el admin no se encuentra, lanzar una excepción
+                    throw new Exception("Admin with the provided ID does not exist.");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores y registro de la excepción
+                Console.WriteLine($"An error occurred while adding the book: {ex.Message}");
+                throw; // Lanzar la excepción para que sea manejada por el controlador
+            }
         }
 
         public IEnumerable<Book> GetAllBooks()
         {
-            return _context.books.Where(b => b.Status == "active").ToList();
+            return _context.books.Where(b => b.Status == "active").Include(b => b.Author).Include(b => b.Gender).ToList();
         }
 
         public Book GetById(int Id)
         {
-
-            return _context.books.FirstOrDefault(b => b.Id == Id);;
+            return _context.books.Where(b => b.Status == "active").Include(b => b.Author).Include(b => b.Gender).FirstOrDefault(b => b.Id == Id);
         }
 
         public void UpdateBook(int IdBook, int IdEmployee, Book book)
         {
             var admin = _context.employees.FirstOrDefault(b => b.Id == IdEmployee);
-            if (admin != null){
+            if (admin != null)
+            {
                 _context.books.Update(book);
                 _context.SaveChanges();
             }
