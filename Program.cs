@@ -1,12 +1,19 @@
 using Library.App.Interfaces.Books;
 using Library.App.Interfaces.Jwt;
+using EntityFrameworkCoreJwtTokenAuth.Interfaces;
+using EntityFrameworkCoreJwtTokenAuth.Services;
+using Library.App.Interfaces;
 using Library.App.Interfaces.Users;
 using Library.App.Services;
 using Library.App.Services.Books;
 using Library.App.Services.Jwt;
 using Library.Data;
 using Library.Utils;
+using Library.App.Interfaces.Users;
+using Library.App.Services;
+using Library.App.Services;
 using Microsoft.EntityFrameworkCore;
+using Library.App.Services.Email;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +31,7 @@ builder.Services.AddDbContext<BaseContext>(options =>
 );
 
 builder.Services.AddScoped<IBookService, BooksServices>();
-
+builder.Services.AddScoped<IMailerSendService, MailerSendService>();
 builder.Services.AddScoped<IUsersServices, UsersService>();
 builder.Services.AddScoped<Bcrypt>();
 builder.Services.AddScoped<IJwtService, JwtService>();

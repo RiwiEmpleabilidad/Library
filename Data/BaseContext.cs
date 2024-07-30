@@ -17,7 +17,7 @@ namespace Library.Data
        public DbSet<Employee> employees { get; set; }  // Correcto
 
         public DbSet<Gender> genders { get; set; }
-        public DbSet<History> Histories { get; set; }
+        public DbSet<History> histories { get; set; }
         public DbSet<Loan> loans { get; set; }
         public DbSet<User> users { get; set; }
 }}

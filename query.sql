@@ -1,4 +1,4 @@
--- Active: 1722286015049@@bajzbxguvxdxkekag9dn-mysql.services.clever-cloud.com@3306@bajzbxguvxdxkekag9dn
+-- Active: 1722296318207@@bajzbxguvxdxkekag9dn-mysql.services.clever-cloud.com@3306@bajzbxguvxdxkekag9dn
 CREATE TABLE genders (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) 
@@ -34,12 +34,14 @@ CREATE TABLE books (
 INSERT INTO books(name,publicationdate,genderid,authorid,TotalCopias,status,CopiasAvailable)
 VALUES("el primero","2024-01-12",1,1,1,"active",0);
 
-CREATE TABLE employess (
+CREATE TABLE employees (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) ,
     email VARCHAR(255) ,
     password VARCHAR(255) 
 );
+
+DROP Table employess;
 
 CREATE TABLE loans (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -52,7 +54,7 @@ CREATE TABLE loans (
     returndate DATE,
     FOREIGN KEY (userid) REFERENCES users(id),
     FOREIGN KEY (bookid) REFERENCES books(id),
-    FOREIGN KEY (employessId) REFERENCES employess(id)
+    FOREIGN KEY (employessId) REFERENCES employees(id)
 );
 
 CREATE TABLE histories (
