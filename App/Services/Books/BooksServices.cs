@@ -19,27 +19,58 @@ namespace Library.App.Services.Books
             _context = context;
         }
 
-        public object employees => throw new NotImplementedException();
-
-        public void AddBook(Book book)
+        public object employess => throw new NotImplementedException();
+    public void AddBook(int Id, Book book)
+    {
+    try
+    {
+        var admin = _context.employees.Find(Id);
+        if (admin != null)
         {
-            // var admin = _context.employees.Find(Id);
-            // if (admin != null){
-            
-            // }
             _context.books.Add(book);
             _context.SaveChanges();
         }
+        else
+        {
+            // Si el admin no se encuentra, lanzar una excepción
+            throw new Exception("Admin with the provided ID does not exist.");
+        }
+    }
+    catch (Exception ex)
+    {
+        // Manejo de errores y registro de la excepción
+        Console.WriteLine($"An error occurred while adding the book: {ex.Message}");
+        throw; // Lanzar la excepción para que sea manejada por el controlador
+    }
+    }
 
         public void DeleteBook(int IdEmployee, int IdBook)
         {
-            var admin = _context.employees.Find(IdEmployee);
-            if (admin != null){
-                var book = _context.books.Find(IdBook);
-                if (book != null){
-                    book.Status = "inactive";
-                }
-            }
+            
+                    try
+                    {
+                        var admin = _context.employees.Find(IdEmployee);
+                            if (admin != null){
+                                var book = _context.books.Find(IdBook);
+                                if (book != null){
+                                    book.Status = "inactive";
+                                    _context.SaveChanges();
+                                }
+                            }
+                        else
+                        {
+                            // Si el admin no se encuentra, lanzar una excepción
+                            throw new Exception("Admin with the provided ID does not exist.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Manejo de errores y registro de la excepción
+                        Console.WriteLine($"An error occurred while adding the book: {ex.Message}");
+                        throw; // Lanzar la excepción para que sea manejada por el controlador
+                    }
+                            
+                            
         }
 
         public IEnumerable<Book> GetAllBooks()

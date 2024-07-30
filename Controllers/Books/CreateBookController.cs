@@ -16,11 +16,21 @@ namespace Library.Controllers.Books
         }
 
         
-        [HttpPost]
-        [Route("api/books")]
-        public IActionResult CreateBook([FromBody]Book book){
-            _context.AddBook(book);
-            return Ok();
+    [HttpPost]
+    [Route("api/books/employees/{Id}")]
+    public IActionResult CreateBook(int Id, [FromBody] Book book)
+    {
+        try
+        {
+            _context.AddBook(Id, book);
+            return Ok("Book added successfully.");
         }
+        catch (Exception ex)
+        {
+            // Manejo de errores y retorno de una respuesta adecuada
+            Console.WriteLine($"An error occurred while creating the book: {ex.Message}");
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+}
     }
 }

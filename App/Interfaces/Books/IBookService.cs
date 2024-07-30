@@ -12,7 +12,7 @@ namespace Library.App.Interfaces.Books
     {
         IEnumerable<Book> GetAllBooks();
         Book GetById(int Id);
-        void AddBook(Book book);
+        void AddBook(int Id, Book book);
         void UpdateBook(int IdBook, int IdEmployee, Book book);
         void DeleteBook(int IdBook,int IdEmployee);
     }

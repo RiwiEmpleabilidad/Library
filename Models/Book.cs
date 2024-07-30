@@ -16,11 +16,11 @@ namespace Library.Models
         [Required]
         public DateTime PublicationDate { get; set; }
 
-        // public int GenderId { get; set; }
-        // public Gender Gender { get; set; }
+        public int GenderId { get; set; }
+        public Gender Gender { get; set; }
 
-        // public int AuthorId { get; set; }
-        // public Author Author { get; set; }
+        public int AuthorId { get; set; }
+        public Author Author { get; set; }
 
         [Required]
         public int TotalCopias { get; set; }
@@ -29,7 +29,7 @@ namespace Library.Models
         [Required]
         public string Status { get; set; }
 
-        // public ICollection<Loan> Loans { get; set; }
+        public ICollection<Loan> Loans { get; set; }
 
 
 
