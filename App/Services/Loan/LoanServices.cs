@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Library.App.Interfaces.Loans;
 using Library.Data;
 using Library.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Library.App.Services.Loans
 {
@@ -19,9 +20,14 @@ namespace Library.App.Services.Loans
 
         public async Task AddLoan(Loan loan)
         {
-            loan.Status = "en espera";
+            loan.Status = "active";
             _context.loans.Add(loan);
             await _context.SaveChangesAsync();
+        }
+
+        public IEnumerable<Loan> GetLoans()
+        {
+            return _context.loans.Where(l => l.Status == "active").Include(l => l.Book).Include(l => l.Employee).Include(l => l.User).Include(l => l.Book.Gender).Include(l => l.Book.Author).ToList();
         }
     }
 }

@@ -25,5 +25,11 @@ namespace Library.Controllers.Loans
             await _loansService.AddLoan(loan);
             return Ok(loan);
         }
+
+        [HttpGet]
+        public IEnumerable<Loan> GetAllLoans()
+        {
+            return _loansService.GetLoans();
+        }
     }
 }

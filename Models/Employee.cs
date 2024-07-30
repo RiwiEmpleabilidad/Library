@@ -8,16 +8,16 @@ namespace Library.Models
 {
     public class Employee
     {
-    [Key]
-    public int Id { get; set; }
-    [Required]
-    public string Name { get; set; }
-    [Required]
-    [EmailAddress]
-    public string Email { get; set; }
-    [Required]
-    public string Password { get; set; }
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        public required string Name { get; set; }
+        [Required]
+        [EmailAddress]
+        public required string Email { get; set; }
+        [Required]
+        public required string Password { get; set; }
 
-    public ICollection<Loan> Loans { get; set; }
+        // public ICollection<Loan> Loans { get; set; }
     }
 }

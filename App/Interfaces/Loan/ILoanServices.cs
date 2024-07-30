@@ -9,5 +9,7 @@ namespace Library.App.Interfaces.Loans
     public interface ILoanServices
     {
         Task AddLoan(Loan loan);
+
+        IEnumerable<Loan> GetLoans();
     }
 }

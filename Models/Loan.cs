@@ -27,7 +27,7 @@ namespace Library.Models
         [Required]
         public DateTime EndDate { get; set; }
         
-        public int? EmployessId { get; set; }
+        public int? EmployeeId { get; set; }
         
         public Employee? Employee { get; set; }
 
